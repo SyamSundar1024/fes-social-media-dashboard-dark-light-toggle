@@ -1,0 +1,31 @@
+// This is going to be a mixin that I am using in my projects for just a faster way to load your media queries.
+
+//We are going to use a mixin so that we can reuse the code every time we need to write a media query. 
+//Since we are using this mixin, if we ever want to change (min-width or others) from 50 ems to 64 ems in the media query, then we don't have to go and do a huge find and replace through all our styles. we can just change it in one place here in this breakpoints file.
+
+//640px, 1150px, 1400px
+$breakpoints-up: (
+    'medium': '40em',
+    'large': '71.875em',
+    'xlarge': '87.5em',
+);
+
+//639px, 1149px, 1399px
+$breakpoints-down:(
+    'small': '39.9375em',
+    'medium': '71.8125em',
+    'large': '87.4375em',
+);
+
+@mixin breakpoint($size){
+    @media (min-width: map-get($breakpoints-up, $size)){
+        @content;
+    }
+}
+
+@mixin breakpoint-down($size){
+    @media (max-width: map-get($breakpoints-down, $size)){
+        @content;
+    }
+}
+
